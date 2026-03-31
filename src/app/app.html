@@ -1,0 +1,24 @@
+<div class="min-h-screen bg-white flex flex-col font-sans text-black">
+  @if (!authStore.isAuthReady()) {
+    <div class="flex-1 flex items-center justify-center">
+      <div class="flex flex-col items-center space-y-4">
+        <div class="w-16 h-16 border-8 border-gray-100 border-t-[#0ABAB5] rounded-full animate-spin border-black/10"></div>
+        <p class="text-black font-black uppercase tracking-widest text-sm animate-pulse">Initializing App...</p>
+      </div>
+    </div>
+  } @else {
+    @if (authStore.isAuthenticated()) {
+      <app-header></app-header>
+    }
+    
+    <div class="flex flex-1 overflow-hidden">
+      @if (authStore.isAuthenticated()) {
+        <app-sidebar></app-sidebar>
+      }
+      
+      <main class="flex-1 overflow-y-auto bg-gray-50/50">
+        <router-outlet></router-outlet>
+      </main>
+    </div>
+  }
+</div>
