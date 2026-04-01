@@ -1,0 +1,52 @@
+:::src:::
+missing assets
+missing environments
+why do we have 2 styles????
+
+index is useless, delete
+main.server is not our job
+server.ts is not our job
+
+main should be moved, globals should be moved
+
+:::app:::
+entirely missing API folder
+
+missing app.component
+
+app.html, app.css have no business here
+app.config.server, app.routes.server are not our job
+app.ts shouldn't exist?????
+
+:::core:::
+missing tokens and types
+
+:::shared:::
+missing models, validators and utils???
+
+missing click-outside.directive
+
+missing truncate.pipe, grade-label.pipe
+
+:::features/auth:::
+missing services
+
+:::features/landing:::
+fully unscripted folder
+why is it here?
+
+:::features/student:::
+progress dashboard looks a bit too big for what it was suppossed
+to be, keep it simpler.
+
+:::shared/components:::
+bonus folders:
+error-state
+header
+sidebar
+skeleton
+
+:::features/auth/components:::
+why do we need a profile page for auth???
+
+reset password is integrated within forgot password
