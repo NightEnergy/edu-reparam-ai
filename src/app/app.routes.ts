@@ -17,13 +17,12 @@ export const routes: Routes = [
     path: 'teacher',
     loadChildren: () => import('./features/teacher/teacher.routes'),
     canActivate: [authGuard, roleGuard],
-    data: { roles: ['TEACHER'] }
+    data: { roles: ['TEACHER', 'ADMIN'] }
   },
   {
-    path: 'parent',
-    loadChildren: () => import('./features/parent/parent.routes'),
-    canActivate: [authGuard, roleGuard],
-    data: { roles: ['PARENT'] }
+    path: 'account',
+    loadChildren: () => import('./features/account/account.routes'),
+    canActivate: [authGuard]
   },
   {
     path: 'admin',
@@ -36,21 +35,6 @@ export const routes: Routes = [
     loadComponent: () => import('./features/auth/components/profile/profile.component').then(m => m.ProfileComponent),
     canActivate: [authGuard]
   },
-  {
-    path: '',
-    loadComponent: () => import('./features/landing/landing.component').then(m => m.LandingComponent)
-  },
-  {
-    path: 'for-students',
-    loadComponent: () => import('./features/landing/student-landing/student-landing.component').then(m => m.StudentLandingComponent)
-  },
-  {
-    path: 'for-teachers',
-    loadComponent: () => import('./features/landing/teacher-landing/teacher-landing.component').then(m => m.TeacherLandingComponent)
-  },
-  {
-    path: 'for-parents',
-    loadComponent: () => import('./features/landing/parent-landing/parent-landing.component').then(m => m.ParentLandingComponent)
-  },
-  { path: '**', redirectTo: '' }
+  { path: '', redirectTo: 'auth/login', pathMatch: 'full' },
+  { path: '**', redirectTo: 'auth/login' }
 ];

@@ -94,11 +94,11 @@ export const SubscriptionStore = signalStore(
       patchState(store, { loading: true, error: null });
       // Simulate API call
       setTimeout(() => {
-        patchState(store, { 
+        patchState(store, {
           plans: MOCK_PLANS,
           currentSubscription: MOCK_SUBSCRIPTION,
           invoices: MOCK_INVOICES,
-          loading: false 
+          loading: false
         });
       }, 600);
     },

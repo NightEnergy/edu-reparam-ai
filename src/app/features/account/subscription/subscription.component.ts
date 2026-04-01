@@ -11,7 +11,7 @@ import { BadgeComponent } from '../../../shared/components/badge/badge.component
   imports: [CommonModule, CardComponent, ButtonComponent, BadgeComponent],
   template: `
     <div class="p-6 md:p-8 max-w-7xl mx-auto space-y-8">
-      
+
       <!-- Header -->
       <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 bg-white p-6 rounded-3xl border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
         <div class="flex items-center space-x-4">
@@ -20,7 +20,7 @@ import { BadgeComponent } from '../../../shared/components/badge/badge.component
           </div>
           <div>
             <h1 class="text-3xl font-black text-black tracking-tight">Subscription Plans</h1>
-            <p class="text-gray-600 font-medium">Choose the right plan for your child's learning journey.</p>
+            <p class="text-gray-600 font-medium">Choose the right plan for your learning journey.</p>
           </div>
         </div>
       </div>
@@ -40,7 +40,7 @@ import { BadgeComponent } from '../../../shared/components/badge/badge.component
                   </span>
                 </div>
               }
-              
+
               <div class="p-8 flex flex-col h-full" [ngClass]="{'bg-[#0ABAB5]/5 rounded-2xl': plan.isPopular}">
                 <div class="text-center mb-8">
                   <h3 class="text-2xl font-black text-black mb-2">{{ plan.name }}</h3>
@@ -49,7 +49,7 @@ import { BadgeComponent } from '../../../shared/components/badge/badge.component
                     <span class="text-gray-500 font-bold ml-1">/{{ plan.interval }}</span>
                   </div>
                 </div>
-                
+
                 <ul class="space-y-4 mb-8 flex-1">
                   @for (feature of plan.features; track feature) {
                     <li class="flex items-start space-x-3">
@@ -58,10 +58,10 @@ import { BadgeComponent } from '../../../shared/components/badge/badge.component
                     </li>
                   }
                 </ul>
-                
+
                 <div class="mt-auto">
-                  <app-button 
-                    [variant]="plan.isPopular ? 'primary' : 'secondary'" 
+                  <app-button
+                    [variant]="plan.isPopular ? 'primary' : 'secondary'"
                     class="w-full"
                     [disabled]="subscriptionStore.currentSubscription()?.planId === plan.id"
                     (click)="changePlan(plan.id)">
@@ -105,7 +105,7 @@ import { BadgeComponent } from '../../../shared/components/badge/badge.component
                       </td>
                     </tr>
                   }
-                  
+
                   @if (subscriptionStore.invoices().length === 0) {
                     <tr>
                       <td colspan="4" class="p-8 text-center text-gray-500 font-bold">
