@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { AuthStore } from '../../../features/auth/store/auth.store';
+import { AuthStore } from '../../features/auth/store/auth.store';
 
 @Component({
   selector: 'app-sidebar',
@@ -44,17 +44,6 @@ import { AuthStore } from '../../../features/auth/store/auth.store';
           </a>
         }
 
-        @if (authStore.isParent()) {
-          <a routerLink="/parent/child-progress" routerLinkActive="bg-[#0ABAB5]/10 text-[#0ABAB5] border-[#0ABAB5]" class="flex items-center space-x-4 px-4 py-4 rounded-2xl border-2 border-transparent hover:border-black hover:bg-gray-50 transition-all text-gray-500 font-bold text-lg">
-            <span class="material-icons text-3xl">family_restroom</span>
-            <span>Child Progress</span>
-          </a>
-          <a routerLink="/parent/subscription" routerLinkActive="bg-[#0ABAB5]/10 text-[#0ABAB5] border-[#0ABAB5]" class="flex items-center space-x-4 px-4 py-4 rounded-2xl border-2 border-transparent hover:border-black hover:bg-gray-50 transition-all text-gray-500 font-bold text-lg">
-            <span class="material-icons text-3xl">star</span>
-            <span>Subscription</span>
-          </a>
-        }
-
         @if (authStore.isAdmin()) {
           <a routerLink="/admin/user-management" routerLinkActive="bg-[#0ABAB5]/10 text-[#0ABAB5] border-[#0ABAB5]" class="flex items-center space-x-4 px-4 py-4 rounded-2xl border-2 border-transparent hover:border-black hover:bg-gray-50 transition-all text-gray-500 font-bold text-lg">
             <span class="material-icons text-3xl">manage_accounts</span>
@@ -65,6 +54,11 @@ import { AuthStore } from '../../../features/auth/store/auth.store';
             <span>Platform Settings</span>
           </a>
         }
+
+        <a routerLink="/account/subscription" routerLinkActive="bg-[#0ABAB5]/10 text-[#0ABAB5] border-[#0ABAB5]" class="flex items-center space-x-4 px-4 py-4 rounded-2xl border-2 border-transparent hover:border-black hover:bg-gray-50 transition-all text-gray-500 font-bold text-lg">
+          <span class="material-icons text-3xl">star</span>
+          <span>Subscription</span>
+        </a>
       </nav>
     </aside>
   `

@@ -30,11 +30,6 @@ export const routes: Routes = [
     canActivate: [authGuard, roleGuard],
     data: { roles: ['ADMIN'] }
   },
-  {
-    path: 'profile',
-    loadComponent: () => import('./features/auth/components/profile/profile.component').then(m => m.ProfileComponent),
-    canActivate: [authGuard]
-  },
-  { path: '', redirectTo: 'auth/login', pathMatch: 'full' },
+{ path: '', redirectTo: 'auth/login', pathMatch: 'full' },
   { path: '**', redirectTo: 'auth/login' }
 ];

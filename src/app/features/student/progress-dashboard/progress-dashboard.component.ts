@@ -2,19 +2,20 @@ import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProgressStore } from '../store/progress.store';
 import { AuthStore } from '../../auth/store/auth.store';
-import { SkeletonComponent } from '../../../shared/components/skeleton/skeleton.component';
 
 @Component({
   selector: 'app-progress-dashboard',
   standalone: true,
-  imports: [CommonModule, SkeletonComponent],
+  imports: [CommonModule],
   template: `
     <div class="p-6 max-w-7xl mx-auto space-y-6">
       <!-- Welcome Card -->
       <div class="bg-white border-2 border-black rounded-xl p-6 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
         @if (progressStore.loading()) {
-          <app-skeleton height="2rem" className="w-1/3 mb-2" />
-          <app-skeleton height="1rem" className="w-1/2" />
+          <div class="animate-pulse space-y-2">
+            <div class="h-8 bg-gray-200 rounded-xl w-1/3"></div>
+            <div class="h-4 bg-gray-200 rounded-xl w-1/2"></div>
+          </div>
         } @else {
           <h1 class="text-2xl font-bold text-black">Good morning, Student!</h1>
           <p class="text-gray-600 mt-2">Ready to learn something new today?</p>
@@ -25,10 +26,12 @@ import { SkeletonComponent } from '../../../shared/components/skeleton/skeleton.
         <!-- Streak Widget -->
         <div class="bg-white border-2 border-black rounded-xl p-6 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex items-center space-x-4">
           @if (progressStore.loading()) {
-            <app-skeleton width="4rem" height="4rem" className="rounded-full" />
-            <div class="space-y-2 flex-1">
-              <app-skeleton height="1.25rem" />
-              <app-skeleton height="1rem" className="w-2/3" />
+            <div class="animate-pulse flex items-center space-x-4 w-full">
+              <div class="w-16 h-16 bg-gray-200 rounded-full"></div>
+              <div class="space-y-2 flex-1">
+                <div class="h-5 bg-gray-200 rounded-xl"></div>
+                <div class="h-4 bg-gray-200 rounded-xl w-2/3"></div>
+              </div>
             </div>
           } @else {
             <div class="w-16 h-16 bg-[#0ABAB5] rounded-full flex items-center justify-center border-2 border-black">
@@ -44,10 +47,12 @@ import { SkeletonComponent } from '../../../shared/components/skeleton/skeleton.
         <!-- Overall Progress -->
         <div class="bg-white border-2 border-black rounded-xl p-6 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex items-center space-x-4">
           @if (progressStore.loading()) {
-            <app-skeleton width="4rem" height="4rem" className="rounded-full" />
-            <div class="space-y-2 flex-1">
-              <app-skeleton height="1.25rem" />
-              <app-skeleton height="1rem" className="w-2/3" />
+            <div class="animate-pulse flex items-center space-x-4 w-full">
+              <div class="w-16 h-16 bg-gray-200 rounded-full"></div>
+              <div class="space-y-2 flex-1">
+                <div class="h-5 bg-gray-200 rounded-xl"></div>
+                <div class="h-4 bg-gray-200 rounded-xl w-2/3"></div>
+              </div>
             </div>
           } @else {
             <div class="w-16 h-16 rounded-full border-4 border-[#0ABAB5] flex items-center justify-center">
@@ -63,9 +68,11 @@ import { SkeletonComponent } from '../../../shared/components/skeleton/skeleton.
         <!-- Continue Learning -->
         <div class="bg-white border-2 border-black rounded-xl p-6 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
           @if (progressStore.loading()) {
-            <app-skeleton height="1.5rem" className="mb-2" />
-            <app-skeleton height="1rem" className="mb-4 w-3/4" />
-            <app-skeleton height="2.5rem" />
+            <div class="animate-pulse space-y-2">
+              <div class="h-6 bg-gray-200 rounded-xl mb-2"></div>
+              <div class="h-4 bg-gray-200 rounded-xl mb-4 w-3/4"></div>
+              <div class="h-10 bg-gray-200 rounded-xl"></div>
+            </div>
           } @else {
             <h3 class="text-lg font-bold text-black mb-2">Continue Learning</h3>
             <p class="text-sm font-medium text-gray-800 mb-4">Introduction to Fractions</p>
@@ -82,11 +89,11 @@ import { SkeletonComponent } from '../../../shared/components/skeleton/skeleton.
         <ul class="space-y-4">
           @if (progressStore.loading()) {
             @for (i of [1, 2, 3]; track i) {
-              <li class="flex items-center space-x-4 border-b-2 border-black pb-4 last:border-0 last:pb-0">
-                <app-skeleton width="2.5rem" height="2.5rem" className="rounded-full" />
+              <li class="flex items-center space-x-4 border-b-2 border-black pb-4 last:border-0 last:pb-0 animate-pulse">
+                <div class="w-10 h-10 bg-gray-200 rounded-full"></div>
                 <div class="space-y-2 flex-1">
-                  <app-skeleton height="1rem" className="w-1/2" />
-                  <app-skeleton height="0.75rem" className="w-1/4" />
+                  <div class="h-4 bg-gray-200 rounded-xl w-1/2"></div>
+                  <div class="h-3 bg-gray-200 rounded-xl w-1/4"></div>
                 </div>
               </li>
             }

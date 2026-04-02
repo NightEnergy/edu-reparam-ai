@@ -1,18 +1,17 @@
 import { Component, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SkeletonComponent } from '../../../../shared/components/skeleton/skeleton.component';
 
 @Component({
   selector: 'app-module-content',
   standalone: true,
-  imports: [CommonModule, SkeletonComponent],
+  imports: [CommonModule],
   template: `
     @if (loading()) {
-      <div class="space-y-4">
-        <app-skeleton height="2rem" width="60%" />
-        <app-skeleton height="1rem" width="100%" />
-        <app-skeleton height="1rem" width="100%" />
-        <app-skeleton height="1rem" width="80%" />
+      <div class="space-y-4 animate-pulse">
+        <div class="h-8 bg-gray-200 rounded-xl w-3/5"></div>
+        <div class="h-4 bg-gray-200 rounded-xl w-full"></div>
+        <div class="h-4 bg-gray-200 rounded-xl w-full"></div>
+        <div class="h-4 bg-gray-200 rounded-xl w-4/5"></div>
       </div>
     } @else {
       <div class="prose prose-lg max-w-none prose-headings:font-black prose-headings:text-black prose-p:text-gray-800 prose-a:text-[#0ABAB5] prose-a:font-bold prose-strong:text-black">

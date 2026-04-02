@@ -1,12 +1,12 @@
 import { Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
-import { AuthStore } from '../../store/auth.store';
-import { ButtonComponent } from '../../../../shared/components/button/button.component';
-import { CardComponent } from '../../../../shared/components/card/card.component';
-import { BadgeComponent } from '../../../../shared/components/badge/badge.component';
-import { ModalComponent } from '../../../../shared/components/modal/modal.component';
-import { NotificationService } from '../../../../core/services/notification.service';
+import { AuthStore } from '../../auth/store/auth.store';
+import { ButtonComponent } from '../../../shared/components/button/button.component';
+import { CardComponent } from '../../../shared/components/card/card.component';
+import { BadgeComponent } from '../../../shared/components/badge/badge.component';
+import { ModalComponent } from '../../../shared/components/modal/modal.component';
+import { NotificationService } from '../../../core/services/notification.service';
 
 @Component({
   selector: 'app-profile',
@@ -17,9 +17,9 @@ import { NotificationService } from '../../../../core/services/notification.serv
       <!-- Header -->
       <div class="bg-white border-4 border-black rounded-3xl p-8 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] flex flex-col md:flex-row items-center gap-8">
         <div class="relative">
-          <img 
-            [src]="authStore.user()?.avatar" 
-            alt="Avatar" 
+          <img
+            [src]="authStore.user()?.avatar"
+            alt="Avatar"
             class="w-32 h-32 rounded-full border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]"
             referrerpolicy="no-referrer"
           >
@@ -27,7 +27,7 @@ import { NotificationService } from '../../../../core/services/notification.serv
             <span class="material-icons text-white text-sm">edit</span>
           </button>
         </div>
-        
+
         <div class="flex-1 text-center md:text-left">
           <div class="flex flex-wrap items-center justify-center md:justify-start gap-3 mb-2">
             <h1 class="text-4xl font-black tracking-tight">{{ authStore.user()?.name }}</h1>
@@ -46,18 +46,18 @@ import { NotificationService } from '../../../../core/services/notification.serv
               <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label for="name" class="block text-sm font-black uppercase tracking-tight mb-2">Full Name</label>
-                  <input 
+                  <input
                     id="name"
-                    type="text" 
+                    type="text"
                     formControlName="name"
                     class="w-full px-4 py-3 border-4 border-black rounded-xl focus:outline-none focus:bg-[#0ABAB5]/5 font-bold"
                   >
                 </div>
                 <div>
                   <label for="email" class="block text-sm font-black uppercase tracking-tight mb-2">Email Address</label>
-                  <input 
+                  <input
                     id="email"
-                    type="email" 
+                    type="email"
                     formControlName="email"
                     class="w-full px-4 py-3 border-4 border-black rounded-xl focus:outline-none focus:bg-[#0ABAB5]/5 font-bold bg-gray-50 cursor-not-allowed"
                     readonly
@@ -79,9 +79,9 @@ import { NotificationService } from '../../../../core/services/notification.serv
               @if (authStore.isTeacher()) {
                 <div>
                   <label for="school" class="block text-sm font-black uppercase tracking-tight mb-2">School Name</label>
-                  <input 
+                  <input
                     id="school"
-                    type="text" 
+                    type="text"
                     formControlName="school"
                     class="w-full px-4 py-3 border-4 border-black rounded-xl focus:outline-none focus:bg-[#0ABAB5]/5 font-bold"
                   >
@@ -104,9 +104,9 @@ import { NotificationService } from '../../../../core/services/notification.serv
             <form [formGroup]="passwordForm" (ngSubmit)="onChangePassword()" class="space-y-6">
               <div>
                 <label for="currentPassword" class="block text-sm font-black uppercase tracking-tight mb-2">Current Password</label>
-                <input 
+                <input
                   id="currentPassword"
-                  type="password" 
+                  type="password"
                   formControlName="currentPassword"
                   placeholder="••••••••"
                   class="w-full px-4 py-3 border-4 border-black rounded-xl focus:outline-none focus:bg-[#0ABAB5]/5 font-bold"
@@ -115,9 +115,9 @@ import { NotificationService } from '../../../../core/services/notification.serv
               <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label for="newPassword" class="block text-sm font-black uppercase tracking-tight mb-2">New Password</label>
-                  <input 
+                  <input
                     id="newPassword"
-                    type="password" 
+                    type="password"
                     formControlName="newPassword"
                     placeholder="••••••••"
                     class="w-full px-4 py-3 border-4 border-black rounded-xl focus:outline-none focus:bg-[#0ABAB5]/5 font-bold"
@@ -125,9 +125,9 @@ import { NotificationService } from '../../../../core/services/notification.serv
                 </div>
                 <div>
                   <label for="confirmPassword" class="block text-sm font-black uppercase tracking-tight mb-2">Confirm New Password</label>
-                  <input 
+                  <input
                     id="confirmPassword"
-                    type="password" 
+                    type="password"
                     formControlName="confirmPassword"
                     placeholder="••••••••"
                     class="w-full px-4 py-3 border-4 border-black rounded-xl focus:outline-none focus:bg-[#0ABAB5]/5 font-bold"
@@ -166,61 +166,8 @@ import { NotificationService } from '../../../../core/services/notification.serv
               </div>
             </div>
           </app-card>
-
-          @if (authStore.isParent()) {
-            <app-card title="Linked Children">
-              <div class="space-y-4">
-                @for (child of linkedChildren(); track child.id) {
-                  <div class="flex items-center justify-between p-3 border-2 border-black rounded-xl bg-gray-50 group">
-                    <div class="flex items-center gap-3">
-                      <img [src]="child.avatar" [alt]="child.name + ' avatar'" class="w-10 h-10 rounded-full border-2 border-black" referrerpolicy="no-referrer">
-                      <div>
-                        <p class="font-black text-sm">{{ child.name }}</p>
-                        <p class="text-xs font-bold text-gray-500 uppercase">Grade {{ child.grade }}</p>
-                      </div>
-                    </div>
-                    <button (click)="unlinkChild(child.id)" class="text-red-500 opacity-0 group-hover:opacity-100 transition-opacity">
-                      <span class="material-icons text-xl">delete</span>
-                    </button>
-                  </div>
-                }
-                <app-button variant="primary" size="sm" class="w-full" (click)="showLinkModal.set(true)">
-                  Link a Child <span class="material-icons ml-2">add</span>
-                </app-button>
-              </div>
-            </app-card>
-          }
         </div>
       </div>
-
-      <!-- Link Child Modal -->
-      <app-modal 
-        [isOpen]="showLinkModal()" 
-        title="Link a Child" 
-        (closeModal)="showLinkModal.set(false)"
-      >
-        <div class="space-y-6">
-          <p class="text-gray-600 font-bold">Enter your child's email address to link their account to yours.</p>
-          <div>
-            <label for="childEmail" class="block text-sm font-black uppercase tracking-tight mb-2">Child's Email</label>
-            <input 
-              #childEmail
-              id="childEmail"
-              type="email" 
-              placeholder="child@example.com"
-              class="w-full px-4 py-3 border-4 border-black rounded-xl focus:outline-none focus:bg-[#0ABAB5]/5 font-bold"
-            >
-          </div>
-          <div class="bg-gray-50 p-4 border-2 border-black rounded-xl border-dashed">
-            <p class="text-xs font-bold text-gray-500 uppercase">Note: Your child must already have a student account on the platform.</p>
-          </div>
-        </div>
-        <div footer class="flex gap-4">
-          <app-button variant="primary" (click)="confirmLink(childEmail.value)">
-            Link Account <span class="material-icons ml-2">link</span>
-          </app-button>
-        </div>
-      </app-modal>
     </div>
   `
 })
@@ -231,11 +178,6 @@ export class ProfileComponent {
 
   loading = signal(false);
   passwordLoading = signal(false);
-  showLinkModal = signal(false);
-
-  linkedChildren = signal([
-    { id: '1', name: 'Alex Paraschiv', grade: 5, avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=child1' }
-  ]);
 
   profileForm = this.fb.group({
     name: [this.authStore.user()?.name || '', Validators.required],
@@ -282,34 +224,6 @@ export class ProfileComponent {
         this.passwordForm.reset();
         this.notificationService.success('Password updated successfully!');
       }, 1500);
-    }
-  }
-
-  confirmLink(email: string) {
-    if (!email || !email.includes('@')) {
-      this.notificationService.error('Please enter a valid email.');
-      return;
-    }
-
-    // Mock API call
-    this.notificationService.info(`Searching for ${email}...`);
-    setTimeout(() => {
-      const newChild = {
-        id: Math.random().toString(),
-        name: 'New Student',
-        grade: 8,
-        avatar: `https://api.dicebear.com/7.x/avataaars/svg?seed=${email}`
-      };
-      this.linkedChildren.set([...this.linkedChildren(), newChild]);
-      this.showLinkModal.set(false);
-      this.notificationService.success('Child account linked successfully!');
-    }, 1500);
-  }
-
-  unlinkChild(id: string) {
-    if (confirm('Are you sure you want to unlink this child?')) {
-      this.linkedChildren.set(this.linkedChildren().filter(c => c.id !== id));
-      this.notificationService.info('Child account unlinked.');
     }
   }
 }

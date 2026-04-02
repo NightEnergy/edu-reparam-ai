@@ -37,7 +37,6 @@ export const AuthStore = signalStore(
     isTeacher: computed(() => state.role() === 'TEACHER'),
     isStudent: computed(() => state.role() === 'STUDENT'),
     isAdmin: computed(() => state.role() === 'ADMIN'),
-    isParent: computed(() => state.role() === 'PARENT'),
   })),
   withMethods((store) => {
     const authService = inject(AuthService);
