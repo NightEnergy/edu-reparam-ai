@@ -1,8 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AuthStore } from '../../../features/auth/store/auth.store';
+import { AuthStore } from '../../features/auth/store/auth.store';
 import { Router } from '@angular/router';
-import { AvatarComponent } from '../avatar/avatar.component';
+import { AvatarComponent } from '../../shared/components/avatar/avatar.component';
 
 @Component({
   selector: 'app-header',
@@ -16,14 +16,14 @@ import { AvatarComponent } from '../avatar/avatar.component';
         </div>
         <h1 class="text-2xl font-black text-black hidden sm:block tracking-tight">E-Learning Tutor</h1>
       </div>
-      
+
       @if (authStore.isAuthenticated()) {
         <div class="flex items-center space-x-6">
           <button class="relative w-12 h-12 rounded-2xl border-2 border-black flex items-center justify-center bg-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] active:translate-y-1 active:shadow-none transition-all">
             <span class="material-icons text-black">notifications</span>
             <span class="absolute -top-2 -right-2 w-4 h-4 bg-[#0ABAB5] rounded-full border-2 border-black"></span>
           </button>
-          
+
           <div class="flex items-center space-x-4 cursor-pointer group" (click)="logout()" tabindex="0" (keydown.enter)="logout()">
             <div class="text-right hidden sm:block">
               <p class="text-base font-bold text-black group-hover:text-[#0ABAB5] transition-colors">User</p>
